@@ -1,0 +1,31 @@
+name: deploy to lambda
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+
+  deploy_zip:
+    name: deploy lambda function
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout source code
+        uses: actions/checkout@v3
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+      - run: npm ci
+      - run: npm run build --if-present
+      - name: node debug
+        run: ls -l
+      - name: Generate Zip
+        run:
+          zip -r deployment.zip .
+      - name: Trigger Infrastructure Deploy Workflow
+        uses: benc-uk/workflow-dispatch@v1
+        with:
+          ref: refs/heads/main
+          workflow: terraform-apply.yml
+          token: ${{ secrets.PAT }}  # Personal Access Token with repo scope
+          repo: richard-cardosodev/hackaton-fiap-iac-infra
