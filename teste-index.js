@@ -83,7 +83,7 @@ const EVENT = {
         "domainName": "87oarveouf.execute-api.us-east-1.amazonaws.com",
         "apiId": "87oarveouf"
     },
-    "body": "{\r\n    \"cpf\": \"01234567890\"\r\n}",
+    "body": "{\r\n    \"matricula\": \"8999\",\"senha\": \"Abc12345\" \r\n}",
     "isBase64Encoded": false
 }
 
