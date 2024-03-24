@@ -26,9 +26,9 @@ export const handler = async function (event, context, callback) {
         max: 1,
         idleTimeoutMillis: 30000,
         connectionTimeoutMillis: 2000,
-        // ssl: {
-        //     rejectUnauthorized: false
-        // }
+        ssl: {
+            rejectUnauthorized: false
+        }
     });
     const conn = await pool.connect();
 
