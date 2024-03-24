@@ -37,7 +37,7 @@ export const handler = async function (event, context, callback) {
         console.log('Resultados da consulta:', result.rows);
 
         if (result.rows.length === 0) {
-            callback(null, makeResponse(404, {message: 'Login inválido!'}) );
+            callback(null, makeResponse(401, {message: 'Login inválido!'}) );
         } else {
           if(await bcrypt.compare(senha, result.rows[0].senha)){
             const payload = {codigo: result.rows[0].codigo, nome: result.rows[0].nome, email: result.rows[0].email, matricula: result.rows[0].matricula};
